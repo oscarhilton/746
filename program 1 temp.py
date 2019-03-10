@@ -36,7 +36,7 @@ def callPhoneNumber(number):
 
     service = availableNumbers.get(number)
     try:
-        await sounds.playRing()
+        sounds.playRing()
         globals()[service](inCall, number)
         inCall = True
     except KeyError:
