@@ -61,9 +61,9 @@ while True:
                 else:
                     GPIO.remove_event_detect(23)
                     number = int((c-1)/2)
-                    added = addToNumber(number)
+                    addToNumber(number)
 		                       
-                    print ("You dial", added)
+                    print ("You dial", number, phoneNumber)
 
                     callPhoneNumber(phoneNumber)
 
