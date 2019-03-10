@@ -31,13 +31,14 @@ def addToNumber(num):
 def callPhoneNumber(number):
     global availableNumbers
     global inCall
-    n = availableNumbers.get(number)
-    try:
-        # phoneNumber = ""
-        # inCall = True
+    global phoneNumber
 
-        globals()[n](inCall, number)
-        print("test")
+    service = availableNumbers.get(number)
+    try:
+        phoneNumber = ""
+        inCall = True
+
+        globals()[service](inCall, number)
     except KeyError:
         return
     
