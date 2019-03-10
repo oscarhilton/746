@@ -1,5 +1,4 @@
-from soundplayer import SoundPlayer
+from playsound import playsound
 
 def playRing():
-    p = SoundPlayer("./ringring.wav", 1)  
-    p.play()
+    playsound("./ringring.wav")  
