@@ -1,6 +1,5 @@
-import pygame
-pygame.mixer.init()
+from soundplayer import SoundPlayer
 
 def playRing():
-    s = pygame.mixer.Sound("ringring.wav")
-    s.play()
+    p = SoundPlayer("./ringring.wav", 1)  
+    p.play()
