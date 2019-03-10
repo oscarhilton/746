@@ -35,9 +35,7 @@ def callPhoneNumber(number):
     try:
         globals()[n](inCall, number)
         
-        if inCall:
-            phoneNumber = ""
-
+        phoneNumber = ""
         inCall = True
     except KeyError:
         return
