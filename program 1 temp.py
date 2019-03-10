@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import math, sys, os
 import subprocess
 import socket
-import sounds
+# import sounds
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
@@ -36,7 +36,7 @@ def callPhoneNumber(number):
 
     service = availableNumbers.get(number)
     try:
-        sounds.playRing()
+        # sounds.playRing()
         globals()[service](inCall, number)
         inCall = True
     except KeyError:
