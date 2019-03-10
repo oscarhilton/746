@@ -35,10 +35,12 @@ def callPhoneNumber(number):
 
     service = availableNumbers.get(number)
     try:
-        phoneNumber = ""
-        inCall = True
-
         globals()[service](inCall, number)
+
+        if inCall:
+            phoneNumber = ""
+        
+        inCall = True
     except KeyError:
         return
     
