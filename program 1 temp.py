@@ -20,8 +20,6 @@ availableNumbers = {
 }
 inCall = False
 
-sounds.playRing()
-
 def count(pin):
     global c 
     c = c + 1
@@ -38,6 +36,7 @@ def callPhoneNumber(number):
 
     service = availableNumbers.get(number)
     try:
+        await sounds.playRing()
         globals()[service](inCall, number)
         inCall = True
     except KeyError:
@@ -75,6 +74,10 @@ while True:
 
                     if inCall:
                         phoneNumber = ""
+
+                    if number == 10:
+                        inCall = False
+                        print("Call ended")
 
                     c= 0                 
                     
