@@ -14,7 +14,8 @@ last = 1
 phoneNumber = ""
 availableNumbers = {
     "123": "spotify",
-    "321": "slack"
+    "321": "slack",
+    "672": "amswerphone"
 }
 inCall = False
 
@@ -24,7 +25,8 @@ def count(pin):
 
 def addToNumber(num):
     global phoneNumber
-    phoneNumber = phoneNumber + str(num)
+    if num > 0:
+        phoneNumber = phoneNumber + str(num)
 
 def callPhoneNumber(number):
     global availableNumbers
@@ -47,7 +49,10 @@ def spotify(inCall, number):
         print("Loading up spotify!")
     
 def slack(inCall, number):
-    print("Loading up slack! ", number)
+    if inCall:
+        print("Entered number ", number)
+    else:
+        print("Loading up slack!")
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
@@ -63,7 +68,7 @@ while True:
                     number = int((c-1)/2)
                     addToNumber(number)
 		                       
-                    print ("You dial", number, phoneNumber)
+                    print ("You dialed", number, phoneNumber)
 
                     callPhoneNumber(phoneNumber)
 
