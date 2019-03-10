@@ -45,7 +45,7 @@ def callPhoneNumber(number):
     
 def spotify(inCall, number):
     if inCall:
-        print("Entered number ", `number)
+        print("Entered number ", number)
     else:
         print("Loading up spotify!")
     
