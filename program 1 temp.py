@@ -33,10 +33,11 @@ def callPhoneNumber(number):
     global inCall
     n = availableNumbers.get(number)
     try:
+        # phoneNumber = ""
+        # inCall = True
+
         globals()[n](inCall, number)
-        
-        phoneNumber = ""
-        inCall = True
+        print("test")
     except KeyError:
         return
     
