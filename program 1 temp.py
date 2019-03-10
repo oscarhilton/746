@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import math, sys, os
 import subprocess
 import socket
+import sounds
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
@@ -18,6 +19,8 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
+
+sounds.playRing()
 
 def count(pin):
     global c 
@@ -42,7 +45,7 @@ def callPhoneNumber(number):
     
 def spotify(inCall, number):
     if inCall:
-        print("Entered number ", number)
+        print("Entered number ", `number)
     else:
         print("Loading up spotify!")
     
