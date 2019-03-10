@@ -9,12 +9,45 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-c=0
+c = 0
 last = 1
+phoneNumber = ""
+availableNumbers = {
+    "123": "spotify",
+    "321": "slack"
+}
+inCall = False
 
 def count(pin):
     global c 
     c = c + 1
+
+def addToNumber(num):
+    global phoneNumber
+    phoneNumber = phoneNumber + str(num)
+
+def callPhoneNumber(number):
+    global availableNumbers
+    global inCall
+    n = availableNumbers.get(number)
+    try:
+        globals()[n](inCall, number)
+        
+        if inCall:
+            phoneNumber = ""
+
+        inCall = True
+    except KeyError:
+        return
+    
+def spotify(inCall, number):
+    if inCall:
+        print("Entered number ", number)
+    else:
+        print("Loading up spotify!")
+    
+def slack(inCall, number):
+    print("Loading up slack! ", number)
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
@@ -28,8 +61,11 @@ while True:
                 else:
                     GPIO.remove_event_detect(23)
                     number = int((c-1)/2)
+                    added = addToNumber(number)
 		                       
-                    print ("You dial", number)
+                    print ("You dial", added)
+
+                    callPhoneNumber(phoneNumber)
 
                     c= 0                 
                     
