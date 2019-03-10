@@ -36,10 +36,6 @@ def callPhoneNumber(number):
     service = availableNumbers.get(number)
     try:
         globals()[service](inCall, number)
-
-        if inCall:
-            phoneNumber = ""
-        
         inCall = True
     except KeyError:
         return
@@ -73,6 +69,9 @@ while True:
                     print ("You dialed", number, phoneNumber)
 
                     callPhoneNumber(phoneNumber)
+
+                    if inCall:
+                        phoneNumber = ""
 
                     c= 0                 
                     
