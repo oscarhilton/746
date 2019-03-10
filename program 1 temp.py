@@ -75,8 +75,9 @@ while True:
                     if inCall:
                         phoneNumber = ""
 
-                    if number == 10:
+                    if number == 10 || phoneNumber.length > 9:
                         inCall = False
+                        phoneNumber = ""
                         print("Call ended")
 
                     c= 0                 
