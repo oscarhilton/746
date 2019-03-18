@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import math, sys, os
 import subprocess
 import socket
-# import sounds
+import sounds
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
