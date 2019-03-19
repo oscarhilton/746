@@ -21,11 +21,19 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
-service = {
-    "running": False,
-    "number": "",
-    "name": ""
-}
+
+class service:
+    running =  False
+    number = ""
+    name =  ""
+
+    def run(self):
+        self.running = True
+    def setNumber(self, number):
+        self.number = number
+    def setName(self, name):
+        self.name = name
+
 
 spotify = Spotify()
 
@@ -46,8 +54,8 @@ def callPhoneNumber(number):
 
     if number in availableNumbers and not service.running:
         print("Yep!")
-        service.name = availableNumbers.get(number)
-        service.number = number
+        service.setName(availableNumbers.get(number))
+        service.setNumber(number)
         print(service)
 
     else:
