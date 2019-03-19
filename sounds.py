@@ -6,5 +6,6 @@ pygame.init()
 pygame.mixer.init()
 
 def playRing():
+    print("playing ring!")
     ring = pygame.mixer.Sound("ringring.wav")
     ring.play()
