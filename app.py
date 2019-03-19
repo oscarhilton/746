@@ -44,7 +44,7 @@ def callPhoneNumber(number):
     global phoneNumber
     global service
 
-    if number in availableNumbers and !service.running:
+    if number in availableNumbers and not service.running:
         print("Yep!")
         service.name = availableNumbers.get(number)
         service.number = number
