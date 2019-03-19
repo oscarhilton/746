@@ -9,7 +9,7 @@ class Call:
     # sounds.playRing()
     self.inCall = True
 
-    print("You are in call!")
+    print("You are in call with ", self.name)
 
     # while self.inCall:
     #   try:
@@ -18,6 +18,5 @@ class Call:
     #     break
 
   def enterNumber(self, number):
-    self.dialedNumber = number
     print("Entered ", number, " into ", self.name)
 
