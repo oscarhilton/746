@@ -21,7 +21,7 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
-service = ""
+service = False
 
 spotify = Spotify()
 
@@ -40,7 +40,7 @@ def callPhoneNumber(number):
     global phoneNumber
     global service
 
-    if number in availableNumbers:
+    if number in availableNumbers or service:
         print("Yep!")
         service = availableNumbers.get(number)
         print(service)
