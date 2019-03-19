@@ -5,6 +5,8 @@ import subprocess
 import socket
 import sounds
 
+from modules.Spotify import Spotify
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -19,6 +21,8 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
+
+spotify = Spotify()
 
 def count(pin):
     global c 
@@ -36,23 +40,14 @@ def callPhoneNumber(number):
 
     service = availableNumbers.get(number)
     try:
-        sounds.playRing()
-        globals()[service](inCall, number)
-        inCall = True
+        if inCall:
+            globals()[service].enterNumber(number)
+        else: 
+            globals()[service].enterCall()
+            inCall = True
+    
     except KeyError:
         return
-    
-def spotify(inCall, number):
-    if inCall:
-        print("Entered number ", number)
-    else:
-        print("Loading up spotify!")
-    
-def slack(inCall, number):
-    if inCall:
-        print("Entered number ", number)
-    else:
-        print("Loading up slack!")
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
