@@ -66,7 +66,7 @@ def callPhoneNumber(number):
     if number in availableNumbers and not service.running:
         serviceName = availableNumbers.get(number)
 
-        if serviceNme != "shutdown":
+        if serviceName != "shutdown":
             service.setName(serviceName)
             service.setNumber(number)
             service.run()
