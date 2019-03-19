@@ -22,7 +22,20 @@ availableNumbers = {
 }
 inCall = False
 
-service.running = False
+class Service:
+    running =  False
+    number = ""
+    name =  ""
+
+    def run(self):
+        self.running = True
+    def setNumber(self, number):
+        self.number = number
+    def setName(self, name):
+        self.name = name
+
+service = Service()
+
 
 spotify = Spotify()
 
@@ -43,13 +56,14 @@ def callPhoneNumber(number):
 
     if number in availableNumbers and not service.running:
         print("Yep!")
-        service.name = availableNumbers.get(number)
-        service.number = number
+        service.setName(availableNumbers.get(number))
+        service.setNumber(number)
+        print(service)
 
     else:
         print("Nope")
 
-    if service.running and service.name:
+    if service.running:
         try:
             if inCall:
                 globals()[service.name].saySomething()
