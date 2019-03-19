@@ -21,7 +21,7 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
-service
+service = ""
 
 spotify = Spotify()
 
