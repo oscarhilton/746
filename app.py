@@ -71,6 +71,8 @@ def callPhoneNumber(number):
             service.setNumber(number)
             service.run()
             phoneNumber = ""
+        else:
+            globals()[serviceName]
 
     if service.running:
         try:
