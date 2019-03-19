@@ -22,9 +22,9 @@ availableNumbers = {
 }
 inCall = False
 service = {
-    running: False,
-    number: "",
-    name: ""
+    "running": False,
+    "number": "",
+    "name": ""
 }
 
 spotify = Spotify()
