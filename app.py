@@ -24,6 +24,8 @@ inCall = False
 
 spotify = Spotify()
 
+spotify.saySomething()
+
 def count(pin):
     global c 
     c = c + 1
