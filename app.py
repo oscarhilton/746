@@ -12,15 +12,20 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+alive = True
 c = 0
 last = 1
 phoneNumber = ""
 availableNumbers = {
+    "888": "shutdown",
     "123": "spotify",
     "321": "slack",
     "672": "amswerphone"
 }
 inCall = False
+
+def shutdown():
+    alive = False
 
 class Service:
     running =  False
@@ -33,6 +38,10 @@ class Service:
         self.number = number
     def setName(self, name):
         self.name = name
+    def reset(self):
+        self.running = False
+        self.number = ""
+        self.name = ""
 
 service = Service()
 
@@ -60,14 +69,9 @@ def callPhoneNumber(number):
         service.run()
         phoneNumber = ""
 
-    else:
-        print("Nope")
-
     if service.running:
-        print("Service running!")
         try:
             if inCall:
-                globals()[service.name].saySomething()
                 globals()[service.name].enterNumber(number)
             else: 
                 globals()[service.name].enterCall()
@@ -75,11 +79,12 @@ def callPhoneNumber(number):
     
         except KeyError:
             print("There's no service here.. strange")
+            service.reset()
             return
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
-while True:
+while alive:
     try:
         if GPIO.event_detected(18):
             current = GPIO.input(18)

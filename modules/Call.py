@@ -1,9 +1,10 @@
 # import sounds
 
 class Call:
-  def __init__(self, name):
+  def __init__(self, name, options):
     self.name = name
     self.inCall = False
+    self.options = options
 
   def enterCall(self):
     # sounds.playRing()
@@ -13,4 +14,5 @@ class Call:
 
   def enterNumber(self, number):
     print("Entered ", number, " into ", self.name)
+
 
