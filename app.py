@@ -21,7 +21,11 @@ availableNumbers = {
     "672": "amswerphone"
 }
 inCall = False
-service = False
+service = {
+    running: False,
+    number: "",
+    name: ""
+}
 
 spotify = Spotify()
 
@@ -40,25 +44,27 @@ def callPhoneNumber(number):
     global phoneNumber
     global service
 
-    if number in availableNumbers or service:
+    if number in availableNumbers and !service.running:
         print("Yep!")
-        service = availableNumbers.get(number)
+        service.name = availableNumbers.get(number)
+        service.number = number
         print(service)
 
+    else:
+        print("Nope")
+
+    if service.running:
         try:
             if inCall:
-                globals()[service].saySomething()
-                globals()[service].enterNumber(number)
+                globals()[service.name].saySomething()
+                globals()[service.name].enterNumber(number)
             else: 
-                globals()[service].enterCall()
+                globals()[service.name].enterCall()
                 inCall = True
     
         except KeyError:
             print("There's no service here.. strange")
             return
-
-    else:
-        print("Nope")
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
