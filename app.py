@@ -41,10 +41,9 @@ def callPhoneNumber(number):
     service = availableNumbers.get(number)
     try:
         if inCall:
-            print(inCall, "now in call!")
             globals()[service].enterNumber(number)
+            globals()[service].saySomething()
         else: 
-            print(inCall, "not yet in call")
             globals()[service].enterCall()
             inCall = True
     
