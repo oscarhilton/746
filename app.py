@@ -64,10 +64,13 @@ def callPhoneNumber(number):
     global service
 
     if number in availableNumbers and not service.running:
-        service.setName(availableNumbers.get(number))
-        service.setNumber(number)
-        service.run()
-        phoneNumber = ""
+        serviceName = availableNumbers.get(number)
+
+        if serviceNme != "shutdown":
+            service.setName(serviceName)
+            service.setNumber(number)
+            service.run()
+            phoneNumber = ""
 
     if service.running:
         try:
