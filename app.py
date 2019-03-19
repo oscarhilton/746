@@ -55,15 +55,16 @@ def callPhoneNumber(number):
     global service
 
     if number in availableNumbers and not service.running:
-        print("Yep!")
         service.setName(availableNumbers.get(number))
         service.setNumber(number)
-        print(service)
+        service.run()
+        phoneNumber = ""
 
     else:
         print("Nope")
 
     if service.running:
+        print("Service running!")
         try:
             if inCall:
                 globals()[service.name].saySomething()
