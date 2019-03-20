@@ -40,6 +40,6 @@ def playJazz():
     jazz.queue()
 
 def playWeatherSounds():
-    ring.play(2)
+    ring.play(1)
     answered.queue()
     jazz.queue()

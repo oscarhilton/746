@@ -11,6 +11,7 @@ class Call:
     self.inCall = True
 
     print("You are in call with ", self.name)
+    print("These are the options ", self.options)
 
   def enterNumber(self, number):
     print("Entered ", number, " into ", self.name)

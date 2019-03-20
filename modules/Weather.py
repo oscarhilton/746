@@ -1,6 +1,5 @@
 from Call import Call
 import requests
-import os
 
 class Weather(Call):
   def __init__(self):
@@ -21,6 +20,7 @@ class Weather(Call):
     temp = data["main"]["temp"]
     weather = data["weather"][0]["main"]
 
-    print(description, temp)
     toSay = "The weather in {} today is {} and the temp is {} degrees".format(location, description, temp)
-    os.system("espeak {}".format(toSay))
+    # os.system("espeak {}".format(toSay))
+
+    print(toSay)
