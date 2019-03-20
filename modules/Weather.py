@@ -9,10 +9,10 @@ class Weather(Call):
       "2": "tomorrow",
       "3": "week"
     }
-    self.weather = Weather(unit=Unit.CELSIUS)
-    self.location = self.weather.lookup_by_location("London")
   
   def today(self):
-    condition = self.location.condition
+    weather = Weather(unit=Unit.CELSIUS)
+    location = weather.lookup_by_location("London")
+    condition = location.condition
     print(condition.text)
     
