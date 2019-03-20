@@ -13,7 +13,6 @@ class Weather(Call):
     }
 
   def enterCall(self):
-    super(Weather, self).enterCall()
     espeak.synth("Welcome to the weather! To check todays weather press 1.")
   
   def today(self):
