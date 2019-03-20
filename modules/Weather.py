@@ -1,13 +1,12 @@
 from Call import Call
 import requests
+import speak
 
 class Weather(Call):
   def __init__(self):
     self.name = "Weather"
     self.options = {
-      "1": "today",
-      "2": "tomorrow",
-      "3": "week"
+      "1": "today"
     }
 
   def today(self):
@@ -21,6 +20,6 @@ class Weather(Call):
     weather = data["weather"][0]["main"]
 
     toSay = "The weather in {} today is {} and the temp is {} degrees".format(location, description, temp)
-    # os.system("espeak {}".format(toSay))
 
     print(toSay)
+    speak(toSay)

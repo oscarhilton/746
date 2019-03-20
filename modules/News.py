@@ -3,7 +3,7 @@ import requests
 
 class News(Call):
   def __init__(self):
-    self.name = "Weather"
+    self.name = "News"
     self.options = {
       "1": "headlines",
     }
