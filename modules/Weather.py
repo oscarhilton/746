@@ -18,12 +18,12 @@ class Weather(Call):
 
     print(data)
 
-    # description = data.weather.description
-    # temp = data.main.temp
+    description = data.weather.description
+    temp = data.main.temp
 
-    # print(description, temp)
+    print(description, temp)
 
-    # toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
+    toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
 
-    # espeak.synth(toSpeak)
+    espeak.synth(toSpeak)
     
