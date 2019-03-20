@@ -25,7 +25,7 @@ class News(Call):
 
     articles = data["articles"]
 
-    os.system('flite -t "I find your lack of faith disturbing." ')
+    # os.system('flite -t "I find your lack of faith disturbing." ')
 
     for article in articles:
       print(article["title"])
