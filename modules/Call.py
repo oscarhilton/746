@@ -7,6 +7,7 @@ class Call:
     self.options = options
 
   def enterCall(self):
+    sounds.playRing()
     sounds.playJazz()
     self.inCall = True
 

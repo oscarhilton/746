@@ -97,6 +97,7 @@ def callPhoneNumber(number):
 GPIO.add_event_detect(18, GPIO.BOTH)
 
 while alive:
+    sounds.playOffHook()
     try:
 	if GPIO.event_detected(21):
             print("hanger event")
