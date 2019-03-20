@@ -1,6 +1,7 @@
 from Call import Call
 import requests
 import sounds
+import os
 
 class News(Call):
   def __init__(self):
@@ -23,6 +24,8 @@ class News(Call):
     data = r.json()
 
     articles = data["articles"]
+
+    os.system('flite -t "I find your lack of faith disturbing." ')
 
     for article in articles:
       print(article["title"])
