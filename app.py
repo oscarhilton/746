@@ -96,8 +96,7 @@ def callPhoneNumber(number):
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
-sounds.playRing()
-sounds.playJazz()
+sounds.playOffHook()
 
 while alive:
     try:

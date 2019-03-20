@@ -31,7 +31,7 @@ def playOffHook():
     offHook.play(-1)
 
 def playRing():
-    ring.play(2)
+    ring.play(1)
 
 def playAnswered():
     answered.queue()
