@@ -7,8 +7,7 @@ class Call:
     self.options = options
 
   def enterCall(self):
-    sounds.playRing()
-    sounds.playJazz()
+    sounds.playWeatherSounds()
     self.inCall = True
 
     print("You are in call with ", self.name)
