@@ -1,8 +1,8 @@
 from Call import Call
-from weather import Weather, Unit
+from weather import Weather
 
 class Weather(Call):
-  def __init__(self, location, unit=Unit.CELSIUS):
+  def __init__(self, location, unit):
     self.name = "Weather"
     self.options = {
       "1": "today",

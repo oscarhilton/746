@@ -7,6 +7,7 @@ import sounds
 
 from modules.Spotify import Spotify
 from modules.Weather import Weather
+from weather import Unit
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
@@ -28,7 +29,7 @@ inCall = False
 
 # Services =======
 spotify = Spotify()
-weather = Weather("London")
+weather = Weather("London", Unit.CELSIUS)
 
 def shutdown():
     alive = False
