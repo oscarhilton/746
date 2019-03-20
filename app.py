@@ -29,7 +29,7 @@ inCall = False
 
 # Services =======
 spotify = Spotify()
-weather = Weather("London", Unit.CELSIUS)
+weather = Weather()
 
 def shutdown():
     alive = False
