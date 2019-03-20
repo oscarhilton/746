@@ -7,10 +7,11 @@ pygame.mixer.init(channels=1)
 pygame.mixer.set_num_channels(2)
 
 class Sound:
-    def  __init__(self, url, channel=0):
+    def  __init__(self, url, channel=0, volume=1):
         self.url = url
         self.sound = pygame.mixer.Sound(url)
         self.channel = channel
+        self.sound.set_volume(volume)
 
     def play(self, loops):
         pygame.mixer.Channel(self.channel).play(self.sound, loops=loops)
@@ -22,10 +23,10 @@ class Sound:
         else:
             pygame.mixer.Channel(self.channel).play(self.sound)
 
-offHook = Sound("sounds/offHook.wav", 0)
-ring = Sound("sounds/ringring.wav", 0)
-jazz = Sound("sounds/jazz.wav", 0)
-answered = Sound("sounds/answered.wav", 0)
+offHook = Sound("sounds/offHook.wav", 0, 0.5)
+ring = Sound("sounds/ringring.wav", 0, 0.8)
+jazz = Sound("sounds/jazz.wav", 0, 1)
+answered = Sound("sounds/answered.wav", 0, 1)
 
 def playOffHook():
     offHook.play(1)
