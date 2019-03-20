@@ -26,6 +26,7 @@ inCall = False
 
 def shutdown():
     alive = False
+    print("Alive ", alive)
 
 class Service:
     running =  False
@@ -65,8 +66,6 @@ def callPhoneNumber(number):
 
     if number in availableNumbers and not service.running:
         serviceName = availableNumbers.get(number)
-
-        print(serviceName)
 
         if serviceName != "shutdown":
             service.setName(serviceName)
