@@ -7,6 +7,7 @@ from modules import sounds
 
 from modules.Spotify import Spotify
 from modules.Weather import Weather
+from modules.News import News
 from weather import Unit
 
 GPIO.setwarnings(False)
@@ -23,6 +24,7 @@ availableNumbers = {
     "888": "shutdown",
     "123": "spotify",
     "321": "slack",
+    "111": "news",
     "222": "weather",
     "672": "amswerphone"
 }
@@ -31,6 +33,7 @@ inCall = False
 # Services =======
 spotify = Spotify()
 weather = Weather()
+news = News()
 
 def shutdown():
     alive = False

@@ -24,7 +24,7 @@ class Sound:
             pygame.mixer.Channel(self.channel).play(self.sound)
 
 offHook = Sound("sounds/offHook.wav", 0, 0.05)
-ring = Sound("sounds/ringring.wav", 0, 0.1)
+ring = Sound("sounds/ringring.wav", 0, 0.15)
 jazz = Sound("sounds/jazz.wav", 0, 1)
 answered = Sound("sounds/answered.wav", 0, 1)
 
