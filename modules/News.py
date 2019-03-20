@@ -1,7 +1,7 @@
 from Call import Call
 import requests
 
-class Weather(Call):
+class News(Call):
   def __init__(self):
     self.name = "Weather"
     self.options = {
