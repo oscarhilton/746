@@ -11,6 +11,10 @@ class Weather(Call):
       "2": "tomorrow",
       "3": "week"
     }
+
+  def enterCall(self):
+    super(Weather, self).enterCall()
+    espeak.synth("Welcome to the weather! To check todays weather press 1.")
   
   def today(self):
     r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=20d6758a5860e3fb77f974e096a6f9c5')
@@ -23,7 +27,7 @@ class Weather(Call):
 
     print(description, temp)
 
-    toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
+    # toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
 
-    espeak.synth(toSpeak)
+    # espeak.synth(toSpeak)
     
