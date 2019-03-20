@@ -19,6 +19,6 @@ class Call:
 
       print(serviceName)
 
-      locals()[serviceName]()
+      getattr(self, serviceName)()
 
 
