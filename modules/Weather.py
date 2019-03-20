@@ -1,6 +1,6 @@
 from Call import Call
 import requests
-import speak
+from speak import speak
 
 class Weather(Call):
   def __init__(self):
