@@ -16,12 +16,14 @@ class Weather(Call):
     r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=20d6758a5860e3fb77f974e096a6f9c5')
     data = json.load(r.json())
 
-    description = data.weather.description
-    temp = data.main.temp
+    print(data)
 
-    print(description, temp)
+    # description = data.weather.description
+    # temp = data.main.temp
 
-    toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
+    # print(description, temp)
 
-    espeak.synth(toSpeak)
+    # toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
+
+    # espeak.synth(toSpeak)
     
