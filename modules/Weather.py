@@ -14,7 +14,7 @@ class Weather(Call):
   
   def today(self):
     r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=20d6758a5860e3fb77f974e096a6f9c5')
-    data = json.load(r.json())
+    data = json.dumps(r.json())
 
     print(data)
 
