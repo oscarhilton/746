@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-import RPi.GPIO as GPIO  
+import RPi.GPIO as GPIO
 import math, sys, os
 import subprocess
 import socket
-import sounds
+from modules import sounds
 
 from modules.Spotify import Spotify
 from modules.Weather import Weather
 from weather import Unit
 
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)  
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -55,7 +55,7 @@ class Service:
 service = Service()
 
 def count(pin):
-    global c 
+    global c
     c = c + 1
 
 def addToNumber(num):
@@ -85,10 +85,10 @@ def callPhoneNumber(number):
         try:
             if inCall:
                 globals()[service.name].enterNumber(number)
-            else: 
+            else:
                 globals()[service.name].enterCall()
                 inCall = True
-    
+
         except KeyError:
             print("There's no service here.. strange")
             service.reset()
@@ -96,8 +96,10 @@ def callPhoneNumber(number):
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
+sounds.playRing()
+sounds.playJazz()
+
 while alive:
-    sounds.playOffHook()
     try:
 	if GPIO.event_detected(21):
             print("hanger event")
@@ -110,7 +112,7 @@ while alive:
                     GPIO.remove_event_detect(23)
                     number = int((c-1)/2)
                     addToNumber(number)
-		                       
+
                     print ("You dialed", number, phoneNumber)
 
                     callPhoneNumber(phoneNumber)
@@ -123,9 +125,8 @@ while alive:
                         phoneNumber = ""
                         print("Call ended")
 
-                    c= 0                 
-                    
-                    
+                    c= 0
+
                 last = GPIO.input(18)
     except KeyboardInterrupt:
         break
