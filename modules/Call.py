@@ -16,6 +16,9 @@ class Call:
     print("Entered ", number, " into ", self.name)
     if number in self.options:
       serviceName = self.options.get(number)
-      self[serviceName]()
+
+      print(serviceName)
+
+      # self[serviceName]()
 
 
