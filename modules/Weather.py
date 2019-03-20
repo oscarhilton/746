@@ -1,16 +1,5 @@
 from Call import Call
 import requests
-from weather import Weather, Unit
-
-try:
-  weather = Weather(unit=Unit.CELSIUS)
-  location = weather.lookup_by_location("London")
-except requests.exceptions.ConnectionError:
-    print("Connection refused")
-
-def getTodayWeather():
-  condition = location.condition
-  print(condition.text)
 
 class Weather(Call):
   def __init__(self):
@@ -22,5 +11,6 @@ class Weather(Call):
     }
   
   def today(self):
-    getTodayWeather()
+    r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=20d6758a5860e3fb77f974e096a6f9c5')
+    print(r.json())
     
