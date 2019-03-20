@@ -125,3 +125,5 @@ while alive:
                 last = GPIO.input(18)
     except KeyboardInterrupt:
         break
+
+print("Phone is ready!")
