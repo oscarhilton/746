@@ -27,7 +27,7 @@ offHook = Sound("sounds/offHook.wav", 0, 0.05)
 ring = Sound("sounds/ringring.wav", 0, 0.15)
 jazz = Sound("sounds/jazz.wav", 0, 1)
 answered = Sound("sounds/answered.wav", 0, 1)
-news = Sound("sounds/news", 0, 0.5)
+news = Sound("sounds/news.wav", 0, 0.5)
 
 def playOffHook():
     offHook.play(-1)
