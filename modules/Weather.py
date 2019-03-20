@@ -1,8 +1,12 @@
 from Call import Call
 from weather import Weather, Unit
 
-weather = Weather(unit=Unit.CELSIUS)
-location = weather.lookup_by_location("London")
+try:
+  weather = Weather(unit=Unit.CELSIUS)
+  location = weather.lookup_by_location("London")
+except requests.exceptions.ConnectionError:
+    r.status_code = "Connection refused"
+    print("Connection refused")
 
 def getTodayWeather():
   condition = location.condition
