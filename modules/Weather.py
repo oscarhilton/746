@@ -6,7 +6,6 @@ try:
   weather = Weather(unit=Unit.CELSIUS)
   location = weather.lookup_by_location("London")
 except requests.exceptions.ConnectionError:
-    r.status_code = "Connection refused"
     print("Connection refused")
 
 def getTodayWeather():
