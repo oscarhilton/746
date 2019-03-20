@@ -1,6 +1,6 @@
 import pyttsx
 
-engine = pyttsx.init()
+engine = pyttsx.init('espeak')
 
 def speak(sentence):
   engine.say(sentence)
