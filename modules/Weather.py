@@ -1,7 +1,6 @@
 from Call import Call
 import requests
-import json
-from espeak import espeak
+import os
 
 class Weather(Call):
   def __init__(self):
@@ -12,21 +11,16 @@ class Weather(Call):
       "3": "week"
     }
 
-  def enterCall(self):
-    espeak.say("Welcome to the weather! To check todays weather press 1.")
-  
   def today(self):
-    r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=20d6758a5860e3fb77f974e096a6f9c5')
-    data = json.loads(r.json())
+    location = "London"
+    r = requests.get('http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=20d6758a5860e3fb77f974e096a6f9c5'.format(location))
 
-    print(data)
+    data = r.json()
 
-    description = data.weather.description
-    temp = data.main.temp
+    description = data["weather"][0]["description"]
+    temp = data["main"]["temp"]
+    weather = data["weather"][0]["main"]
 
     print(description, temp)
-
-    # toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
-
-    # espeak.synth(toSpeak)
-    
+    toSay = "The weather in {} today is {} and the temp is {} degrees".format(location, description, temp)
+    os.system("espeak {}".format(toSay))

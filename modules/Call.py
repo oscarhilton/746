@@ -16,6 +16,9 @@ class Call:
     print("Entered ", number, " into ", self.name)
     if number in self.options:
       serviceName = self.options.get(number)
-      getattr(self, serviceName)()
+      try:
+        getattr(self, serviceName)()
+      except AttributeError as error:
+        print(error)
 
 

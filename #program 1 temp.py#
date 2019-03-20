@@ -5,54 +5,20 @@ import subprocess
 import socket
 import sounds
 
-from modules.Spotify import Spotify
-from modules.Weather import Weather
-from weather import Unit
-
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-alive = True
 c = 0
 last = 1
 phoneNumber = ""
 availableNumbers = {
-    "888": "shutdown",
     "123": "spotify",
     "321": "slack",
-    "222": "weather",
     "672": "amswerphone"
 }
 inCall = False
-
-# Services =======
-spotify = Spotify()
-weather = Weather()
-
-def shutdown():
-    alive = False
-    print("Alive ", alive)
-
-class Service:
-    running =  False
-    number = ""
-    name =  ""
-
-    def run(self):
-        self.running = True
-    def setNumber(self, number):
-        self.number = number
-    def setName(self, name):
-        self.name = name
-    def reset(self):
-        self.running = False
-        self.number = ""
-        self.name = ""
-
-service = Service()
 
 def count(pin):
     global c 
@@ -67,39 +33,25 @@ def callPhoneNumber(number):
     global availableNumbers
     global inCall
     global phoneNumber
-    global service
 
-    if number in availableNumbers and not service.running:
-        serviceName = availableNumbers.get(number)
-
-        if serviceName != "shutdown":
-            service.setName(serviceName)
-            service.setNumber(number)
-            service.run()
-            phoneNumber = ""
-        else:
-            print("Shutting down")
-            globals()[serviceName]
-
-    if service.running:
-        try:
-            if inCall:
-                globals()[service.name].enterNumber(number)
-            else: 
-                globals()[service.name].enterCall()
-                inCall = True
+    service = availableNumbers.get(number)
+    try:
+        globals()[service](inCall, number)
+        inCall = True
+    except KeyError:
+        return
     
-        except KeyError:
-            print("There's no service here.. strange")
-            service.reset()
-            return
+def spotify(inCall, number):
+    if inCall:
+        print("Entered number ", number)
+    else:
+        sounds.playRinging()
+        print("Loading up spotify!")
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
-while alive:
+while True:
     try:
-	if GPIO.event_detected(21):
-            print("hanger event")
         if GPIO.event_detected(18):
             current = GPIO.input(18)
             if(last != current):
