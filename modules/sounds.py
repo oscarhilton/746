@@ -28,7 +28,7 @@ jazz = Sound("sounds/jazz.wav", 0)
 answered = Sound("sounds/answered.wav", 0)
 
 def playOffHook():
-    offHook.play(-1)
+    offHook.play(1)
 
 def playRing():
     ring.play(1)
