@@ -19,6 +19,6 @@ class Call:
 
       print(serviceName)
 
-      # self[serviceName]()
+      locals()[serviceName]()
 
 
