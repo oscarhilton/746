@@ -1,5 +1,6 @@
 from Call import Call
 import requests
+import sounds
 
 class News(Call):
   def __init__(self):
