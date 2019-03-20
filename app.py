@@ -28,7 +28,7 @@ inCall = False
 
 # Services =======
 spotify = Spotify()
-weather = Weather()
+weather = Weather("London")
 
 def shutdown():
     alive = False
