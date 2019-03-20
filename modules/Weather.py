@@ -21,5 +21,7 @@ class Weather(Call):
 
     print(description, temp)
 
-    espeak.synth(f"Todays weather is {description} and will have an average temperature of {temp}")
+    toSpeak = "Todays weather is {} and will have an average temperature of {}".format(description, temp)
+
+    espeak.synth(toSpeak)
     
