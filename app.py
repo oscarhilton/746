@@ -6,6 +6,7 @@ import socket
 import sounds
 
 from modules.Spotify import Spotify
+from modules.Weather import Weather
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  
@@ -20,9 +21,14 @@ availableNumbers = {
     "888": "shutdown",
     "123": "spotify",
     "321": "slack",
+    "222": "weather",
     "672": "amswerphone"
 }
 inCall = False
+
+# Services =======
+spotify = Spotify()
+weather = Weather()
 
 def shutdown():
     alive = False
@@ -45,9 +51,6 @@ class Service:
         self.name = ""
 
 service = Service()
-
-
-spotify = Spotify()
 
 def count(pin):
     global c 
