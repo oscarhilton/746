@@ -9,7 +9,7 @@ class Weather(Call):
       "2": "tomorrow",
       "3": "week"
     }
-    self.weather = Weather(unit=unit)
+    self.weather = Weather(unit)
     self.location = self.weather.lookup_by_location(location)
   
   def today(self):
