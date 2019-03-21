@@ -104,7 +104,7 @@ print("end")
 
 while alive:
     try:
-	if GPIO.event_detected(21):
+	    if GPIO.event_detected(21):
             print("hanger event")
         if GPIO.event_detected(18):
             current = GPIO.input(18)

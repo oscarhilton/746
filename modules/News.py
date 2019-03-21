@@ -30,6 +30,7 @@ class News(Call):
     # os.system('flite -t "I find your lack of faith disturbing." ')
 
     for article in articles:
+      sounds.playBell()
       print(article["title"])
       sounds.saySomething("{}.".format(article["title"]))
 

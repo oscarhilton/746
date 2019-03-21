@@ -60,6 +60,7 @@ ring = Sound("sounds/ringring.wav", 0, 0.15)
 jazz = Sound("sounds/jazz.wav", 0, 0.5)
 answered = Sound("sounds/answered.wav", 0, 1)
 news = Sound("sounds/news.wav", 0, 0.1)
+bell = Sound("sounds/bell.wav", 0, 0.6)
 
 def saySomething(text):
     return Polly("Brian").say(text)
@@ -85,3 +86,6 @@ def playNewsSounds():
     ring.play(1)
     answered.queue()
     news.queue()
+
+def playBell():
+    bell.play()

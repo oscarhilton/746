@@ -19,6 +19,7 @@ class Weather(Call):
     temp = data["main"]["temp"]
     weather = data["weather"][0]["main"]
 
-    toSay = "The weather in {} today is {} and the temp is {} degrees".format(location, description, temp)
+    toSay = "The weather in {} today is {} and the temperature is {} degrees.".format(location, description, temp)
 
     sounds.saySomething(toSay)
+    sounds.saySomething("I hope you have a great day.")
