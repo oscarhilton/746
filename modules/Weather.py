@@ -1,6 +1,6 @@
 from Call import Call
 import requests
-from speak import speak
+import sounds
 
 class Weather(Call):
   def __init__(self):
@@ -21,5 +21,4 @@ class Weather(Call):
 
     toSay = "The weather in {} today is {} and the temp is {} degrees".format(location, description, temp)
 
-    print(toSay)
-    speak(toSay)
+    sounds.saySomething(toSay)

@@ -13,6 +13,8 @@ class Call:
     print("You are in call with ", self.name)
     print("These are the options ", self.options)
 
+    sounds.saySomething("Hi there. You are on call with {}. Press 1 and hold.".format(self.name))
+
   def enterNumber(self, number):
     print("Entered ", number, " into ", self.name)
     if number in self.options:

@@ -4,8 +4,6 @@ import io
 from pygame import mixer
 import boto3
 import datetime
-import os
-import time
 
 pygame.init()
 pygame.mixer.init(channels=1)
@@ -17,10 +15,11 @@ class Polly:
         self.VOICE_ID = voiceId
 
     def say(self, text):
-        response = self.polly.synthesize_speech(LanguageCode="en-GB", TextType="ssml", Text="<speak>{}<break time='500ms'/></speak>".format(text), OutputFormat="mp3", VoiceId=self.VOICE_ID)
+        print("hello")
+        response = self.polly.synthesize_speech(Text=text, TextType="text", OutputFormat="mp3", VoiceId=self.VOICE_ID)
         data_stream = response.get("AudioStream")
 
-        filename = "{}.mp3".format(datetime.datetime.now())
+        filename = str(datetime.datetime.now())
         f = file(filename, "wb")
 
         CHUNK_SIZE = 1024
@@ -35,7 +34,7 @@ class Polly:
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
             continue
-        os.remove(filename)
+        os.remove(f)
 
 
 class Sound:
@@ -57,7 +56,7 @@ class Sound:
 
 offHook = Sound("sounds/offHook.wav", 0, 0.05)
 ring = Sound("sounds/ringring.wav", 0, 0.15)
-jazz = Sound("sounds/jazz.wav", 0, 0.5)
+jazz = Sound("sounds/jazz.wav", 0, 1)
 answered = Sound("sounds/answered.wav", 0, 1)
 news = Sound("sounds/news.wav", 0, 0.1)
 

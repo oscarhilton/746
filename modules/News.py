@@ -17,6 +17,8 @@ class News(Call):
     print("You are in call with ", self.name)
     print("These are the options ", self.options)
 
+    sounds.saySomething("Welcome to news! Press 1 to hear the headlines...")
+
   def headlines(self):
     sources = "bbc-news"
     r = requests.get('https://newsapi.org/v2/top-headlines?sources={}&apiKey=cfb2ed55add84931be4a7e8ae66cf053'.format(sources))
@@ -29,3 +31,6 @@ class News(Call):
 
     for article in articles:
       print(article["title"])
+      sounds.saySomething(article["title"])
+
+    sounds.saySomething("and that concludes todays headlines. Check again tomorrow!")
