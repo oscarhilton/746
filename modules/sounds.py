@@ -62,7 +62,7 @@ answered = Sound("sounds/answered.wav", 0, 1)
 news = Sound("sounds/news.wav", 0, 0.1)
 
 def saySomething(text):
-    return Polly("Matthew").say(text)
+    return Polly("Brian").say(text)
 
 def playOffHook():
     offHook.play(-1)

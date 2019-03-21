@@ -31,6 +31,7 @@ class News(Call):
 
     for article in articles:
       print(article["title"])
-      sounds.saySomething(article["title"])
+      sounds.saySomething("{}.".format(article["title"]))
 
     sounds.saySomething("and that concludes todays headlines. Check again tomorrow!")
+    sounds.playOffHook()
