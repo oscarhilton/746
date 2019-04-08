@@ -15,6 +15,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(24, GPIO.OUT) #Buzzer
 
 c = 0
 last = 1
@@ -94,11 +95,13 @@ def callPhoneNumber(number):
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
+GPIO.output(24, True)
+
 while True:
     try:
-        while GPIO.input(19) == False:
-            print("START CALL")
-            sounds.playOffHook()
+        if GPIO.input(19) == False:
+            if not inCall:
+                sounds.playOffHook()
             if GPIO.event_detected(18):
                 current = GPIO.input(18)
                 if(last != current):
@@ -124,6 +127,7 @@ while True:
                         c= 0
 
                     last = GPIO.input(18)
-        print("END CALL")
+        else:
+            print("END CALL")
     except KeyboardInterrupt:
         break
