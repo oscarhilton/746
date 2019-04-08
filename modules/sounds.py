@@ -88,4 +88,4 @@ def playNewsSounds():
     news.queue()
 
 def playBell():
-    bell.play()
+    bell.queue()
