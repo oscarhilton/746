@@ -89,3 +89,6 @@ def playNewsSounds():
 
 def playBell():
     bell.queue()
+
+def stopAll():
+    pygame.mixer.stop()

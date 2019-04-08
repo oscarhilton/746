@@ -128,6 +128,12 @@ while True:
 
                     last = GPIO.input(18)
         else:
-            print("END CALL")
+            if not inCall:
+                print("END CALL")
+                c = 0
+                last = 1
+                phoneNumber = ""
+                inCall = False
+                sounds.stopAll()
     except KeyboardInterrupt:
         break
