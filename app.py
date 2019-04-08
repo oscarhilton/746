@@ -14,14 +14,12 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-alive = True
 c = 0
 last = 1
 phoneNumber = ""
 availableNumbers = {
-    "888": "shutdown",
     "123": "spotify",
     "321": "slack",
     "111": "news",
@@ -34,10 +32,6 @@ inCall = False
 spotify = Spotify()
 weather = Weather()
 news = News()
-
-def shutdown():
-    alive = False
-    print("Alive ", alive)
 
 class Service:
     running =  False
@@ -60,6 +54,7 @@ service = Service()
 def count(pin):
     global c
     c = c + 1
+    print(c)
 
 def addToNumber(num):
     global phoneNumber
@@ -99,37 +94,36 @@ def callPhoneNumber(number):
 
 GPIO.add_event_detect(18, GPIO.BOTH)
 
-sounds.playOffHook()
-print("end")
-
-while alive:
+while True:
     try:
-	if GPIO.event_detected(21):
-            print("hanger event")
-        if GPIO.event_detected(18):
-            current = GPIO.input(18)
-            if(last != current):
-                if(current == 0):
-                    GPIO.add_event_detect(23, GPIO.BOTH, callback=count, bouncetime=10)
-                else:
-                    GPIO.remove_event_detect(23)
-                    number = int((c-1)/2)
-                    addToNumber(number)
+        while GPIO.input(19) == False:
+            print("START CALL")
+            sounds.playOffHook()
+            if GPIO.event_detected(18):
+                current = GPIO.input(18)
+                if(last != current):
+                    if(current == 0):
+                        GPIO.add_event_detect(23, GPIO.BOTH, callback=count, bouncetime=10)
+                    else:
+                        GPIO.remove_event_detect(23)
+                        number = int((c-1)/2)
+                        addToNumber(number)
 
-                    print ("You dialed", number, phoneNumber)
+                        print ("You dialed", number, phoneNumber)
 
-                    callPhoneNumber(phoneNumber)
+                        callPhoneNumber(phoneNumber)
 
-                    if inCall:
-                        phoneNumber = ""
+                        if inCall:
+                            phoneNumber = ""
 
-                    if number == 10 or len(phoneNumber) > 9:
-                        inCall = False
-                        phoneNumber = ""
-                        print("Call ended")
+                        if number == 10 or len(phoneNumber) > 9:
+                            inCall = False
+                            phoneNumber = ""
+                            print("Call ended")
 
-                    c= 0
+                        c= 0
 
-                last = GPIO.input(18)
+                    last = GPIO.input(18)
+        print("END CALL")
     except KeyboardInterrupt:
         break
