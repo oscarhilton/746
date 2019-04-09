@@ -10,10 +10,10 @@ class Weather(Call):
       "2": "rainToday"
     }
     self.appId = "20d6758a5860e3fb77f974e096a6f9c5"
+    self.location = "London"
 
   def today(self):
-    location = "London"
-    r = requests.get('http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID={}'.format(location, self.appId))
+    r = requests.get('http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID={}'.format(self.location, self.appId))
 
     data = r.json()
 
@@ -27,8 +27,7 @@ class Weather(Call):
     sounds.saySomething("I hope you have a great day.")
     
   def rainToday(self):
-    location = "London:
-    r = requests.get('http://api.openweathermap.org/data/2.5/forecast?q={}&units=metric&APPID={}'.format(location, self.appId))
+    r = requests.get('http://api.openweathermap.org/data/2.5/forecast?q={}&units=metric&APPID={}'.format(self.location, self.appId))
 
     data = r.json()
     forecast = data["list"]
