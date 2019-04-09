@@ -5,6 +5,7 @@ class Call:
     self.name = name
     self.inCall = False
     self.options = options
+    self.dynamicOptions = False
 
   def enterCall(self):
     sounds.playWeatherSounds()
@@ -17,13 +18,20 @@ class Call:
 
   def enterNumber(self, number):
     print("Entered ", number, " into ", self.name)
-    if number in self.options:
-      serviceName = self.options.get(number)
+    if not self.dynamicOptions:
+      if self.options[number - 1]:
+        serviceName = self.options[number]
       try:
         getattr(self, serviceName)()
       except AttributeError as error:
         print(error)
-        
+    else:
+      print("Dynamic options!", number)
+      # self.dynamicOption(number)
+
+  def dynamicOption(number):
+    print("dynamic options number ", number)
+
   def hangup(self) :
     print("Hanging up call with ", self.name)
     self.inCall = False

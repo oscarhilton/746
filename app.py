@@ -55,7 +55,6 @@ service = Service()
 def count(pin):
     global c
     c = c + 1
-    print(c)
 
 def addToNumber(num):
     global phoneNumber
@@ -94,12 +93,11 @@ def callPhoneNumber(number):
             return
 
 GPIO.add_event_detect(18, GPIO.BOTH)
-
 GPIO.output(24, True)
 
 while True:
     try:
-        if GPIO.input(19) == False:
+        while GPIO.input(19) == False:
             if not inCall:
                 sounds.playOffHook()
             if GPIO.event_detected(18):
@@ -127,15 +125,14 @@ while True:
                         c= 0
 
                     last = GPIO.input(18)
-        else:
-            if not inCall:
-                print("END CALL")
-                c = 0
-                last = 1
-                phoneNumber = ""
-                inCall = False
-                sounds.stopAll()
+        if inCall:
+            if service.running:
                 globals()[service.name].hangup()
-                service.reset()
+            inCall = False
+        phoneNumber = ""
+        c = 0
+        last = 1
+        sounds.stopAll()
+        service.reset()
     except KeyboardInterrupt:
         break

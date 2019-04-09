@@ -92,3 +92,4 @@ def playBell():
 
 def stopAll():
     pygame.mixer.stop()
+    pygame.mixer.music.stop()
