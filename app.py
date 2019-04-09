@@ -135,6 +135,7 @@ while True:
                 phoneNumber = ""
                 inCall = False
                 sounds.stopAll()
+                service.hangup()
                 service.reset()
     except KeyboardInterrupt:
         break
