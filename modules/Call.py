@@ -23,5 +23,10 @@ class Call:
         getattr(self, serviceName)()
       except AttributeError as error:
         print(error)
+        
+  def hangup(self) :
+    print("Hanging up call with ", self.name)
+    self.inCall = False
+    sounds.stopAll()
 
 
