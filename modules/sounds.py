@@ -64,9 +64,10 @@ bell = Sound("sounds/bell.wav", 0, 0.6)
 
 def removeAllSounds():
     try:
-        return os.remove("sounds/temp")
+        return os.remove("sounds/temp/*")
     except OSError as error:
         print("Error: ", error)
+        continue
 
 def saySomething(text):
     return Polly("Brian").say(text)
