@@ -94,13 +94,6 @@ GPIO.add_event_detect(18, GPIO.BOTH)
 
 while True:
     try:
-        GPIO.output(24, True)
-    except:
-        break
-
-
-while True:
-    try:
         while GPIO.input(19) == False:
             GPIO.output(20, True)
             if not inCall:
