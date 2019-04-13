@@ -35,7 +35,7 @@ class Polly:
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
             continue
-        os.remove("sounds/temp/{}".format(filename))
+        os.remove(filename)
 
 
 class Sound:
@@ -64,7 +64,7 @@ bell = Sound("sounds/bell.wav", 0, 0.6)
 
 def removeAllSounds():
     try:
-        return os.remove("sounds/temp/*")
+        return os.remove("sounds/temp/**")
     except OSError as error:
         print("Error: ", error)
 
