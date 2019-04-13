@@ -95,6 +95,8 @@ GPIO.add_event_detect(18, GPIO.BOTH)
 while True:
     try:
         GPIO.output(24, True)
+    except:
+        break
 
 
 while True:
