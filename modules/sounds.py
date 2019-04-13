@@ -65,7 +65,7 @@ bell = Sound("sounds/bell.wav", 0, 0.6)
 def removeAllSounds():
     try:
         return os.remove("sounds/temp")
-    except OSError as error
+    except OSError as error:
         print("Error: ", error)
 
 def saySomething(text):
