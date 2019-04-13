@@ -16,6 +16,7 @@ GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.OUT) #Buzzer
+GPIO.setup(20, GPIO.OUT) #Light
 
 c = 0
 last = 1
@@ -98,6 +99,7 @@ GPIO.output(24, True)
 while True:
     try:
         while GPIO.input(19) == False:
+            GPIO.output(20, True)
             if not inCall:
                 sounds.playOffHook()
             if GPIO.event_detected(18):
@@ -129,6 +131,7 @@ while True:
             if service.running:
                 globals()[service.name].hangup()
             inCall = False
+        GPIO.output(20, False)
         phoneNumber = ""
         c = 0
         last = 1
