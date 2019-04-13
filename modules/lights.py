@@ -14,6 +14,8 @@ def startup(ready = True):
       GPIO.output(20, False)
       time.sleep(0.5)
       i += 1
+    except:
+      break
 
 def shutdown():
   while True:
@@ -22,3 +24,5 @@ def shutdown():
       time.sleep(0.5)
       GPIO.output(20, False)
       time.sleep(0.5)
+    except:
+      break
