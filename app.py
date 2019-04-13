@@ -74,8 +74,7 @@ def callPhoneNumber(number):
             service.run()
             phoneNumber = ""
         else:
-            print("Shutting down")
-            globals()[serviceName]
+            shutdown()
 
     if service.running:
         try:
