@@ -4,12 +4,19 @@ import math, sys, os
 import subprocess
 import socket
 from modules import sounds
+from modules import lights
 
+from modules.Phone import Phone
 from modules.Spotify import Spotify
 from modules.Weather import Weather
 from modules.News import News
 from weather import Unit
 
+# Startup clean and start lights
+lights.startup()
+sounds.removeAllSounds()
+
+# Setup GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -18,6 +25,7 @@ GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.OUT) #Buzzer
 GPIO.setup(20, GPIO.OUT) #Light
 
+# Setup 
 c = 0
 last = 1
 phoneNumber = ""
@@ -26,32 +34,21 @@ availableNumbers = {
     "321": "slack",
     "111": "news",
     "222": "weather",
-    "672": "amswerphone"
+    "672": "amswerphone",
+    "888": "shutdown"
 }
 inCall = False
 
-# Services =======
+# Instanciate Services =======
+service = Phone()
 spotify = Spotify()
 weather = Weather()
 news = News()
 
-class Service:
-    running =  False
-    number = ""
-    name =  ""
-
-    def run(self):
-        self.running = True
-    def setNumber(self, number):
-        self.number = number
-    def setName(self, name):
-        self.name = name
-    def reset(self):
-        self.running = False
-        self.number = ""
-        self.name = ""
-
-service = Service()
+# Shutdown
+def shutdown():
+    lights.shutdown()
+    os.system('sudo shutdown now')
 
 def count(pin):
     global c
@@ -94,7 +91,11 @@ def callPhoneNumber(number):
             return
 
 GPIO.add_event_detect(18, GPIO.BOTH)
-GPIO.output(24, True)
+
+while True:
+    try:
+        GPIO.output(24, True)
+
 
 while True:
     try:
@@ -137,5 +138,6 @@ while True:
         last = 1
         sounds.stopAll()
         service.reset()
+        sounds.removeAllSounds()
     except KeyboardInterrupt:
         break

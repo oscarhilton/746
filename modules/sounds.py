@@ -20,7 +20,7 @@ class Polly:
         response = self.polly.synthesize_speech(LanguageCode="en-GB", TextType="ssml", Text="<speak>{}<break time='500ms'/></speak>".format(text), OutputFormat="mp3", VoiceId=self.VOICE_ID)
         data_stream = response.get("AudioStream")
 
-        filename = "{}.mp3".format(datetime.datetime.now())
+        filename = "sounds/temp/{}.mp3".format(datetime.datetime.now())
         f = file(filename, "wb")
 
         CHUNK_SIZE = 1024
@@ -35,7 +35,7 @@ class Polly:
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
             continue
-        os.remove(filename)
+        os.remove("sounds/temp/{}".format(filename))
 
 
 class Sound:
@@ -62,6 +62,10 @@ answered = Sound("sounds/answered.wav", 0, 1)
 news = Sound("sounds/news.wav", 0, 0.1)
 bell = Sound("sounds/bell.wav", 0, 0.6)
 
+def removeAllSounds():
+    try:
+        return os.remove("sounds/temp")
+
 def saySomething(text):
     return Polly("Brian").say(text)
 
@@ -69,7 +73,9 @@ def playOffHook():
     offHook.play(-1)
 
 def playRing():
+    stopAll()
     ring.play(1)
+    time.sleep(2)
 
 def playAnswered():
     answered.queue()
