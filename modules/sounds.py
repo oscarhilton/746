@@ -67,7 +67,6 @@ def removeAllSounds():
         return os.remove("sounds/temp/*")
     except OSError as error:
         print("Error: ", error)
-        continue
 
 def saySomething(text):
     return Polly("Brian").say(text)
