@@ -22,13 +22,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(24, GPIO.OUT) #Buzzer
-GPIO.setup(20, GPIO.OUT) #Light
 
-# Setup 
-c = 0
-last = 1
-phoneNumber = ""
+# Setup
 availableNumbers = {
     "123": "spotify",
     "321": "slack",
@@ -37,7 +32,15 @@ availableNumbers = {
     "672": "amswerphone",
     "888": "shutdown"
 }
+c = 0
+last = 1
+phoneNumber = ""
 inCall = False
+def restart():
+    global c = 0
+    global last = 1
+    global phoneNumber = ""
+    global inCall = False
 
 # Instanciate Services =======
 service = Phone()
@@ -94,7 +97,7 @@ GPIO.add_event_detect(18, GPIO.BOTH)
 while True:
     try:
         while GPIO.input(19) == False:
-            GPIO.output(20, True)
+            lights.lightOn()
             if not inCall:
                 sounds.playOffHook()
             if GPIO.event_detected(18):
@@ -126,10 +129,8 @@ while True:
             if service.running:
                 globals()[service.name].hangup()
             inCall = False
-        GPIO.output(20, False)
-        phoneNumber = ""
-        c = 0
-        last = 1
+        lights.lightOff()
+        restart()
         sounds.stopAll()
         service.reset()
         sounds.removeAllSounds()

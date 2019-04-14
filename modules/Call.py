@@ -33,8 +33,9 @@ class Call:
     print("dynamic options number ", number)
 
   def hangup(self) :
-    print("Hanging up call with ", self.name)
-    self.inCall = False
-    sounds.stopAll()
+    if self.inCall:
+      print("Hanging up call with ", self.name)
+      sounds.stopAll()
+      self.inCall = False
 
 

@@ -5,6 +5,12 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(20, GPIO.OUT) #Light
 
+def lightOn():
+  GPIO.output(20, True)
+
+def lightOff():
+  GPIO.output(20, False)
+
 def startup(ready = True):
   i = 1
   while i < 3 and ready:
