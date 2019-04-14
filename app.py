@@ -37,10 +37,14 @@ last = 1
 phoneNumber = ""
 inCall = False
 def restart():
-    global c = 0
-    global last = 1
-    global phoneNumber = ""
-    global inCall = False
+    global c
+    global last
+    global phoneNumber
+    global inCall
+    c = 0
+    last = 1
+    phoneNumber = ""
+    inCall = False
 
 # Instanciate Services =======
 service = Phone()
